@@ -442,8 +442,7 @@ elif page_key == "Model Insights":
     report_df = pd.DataFrame(default_report).transpose()
     report_df = report_df[report_df.index.isin(["Low Loss","High Loss","macro avg","weighted avg"])]
     report_df = report_df[["precision","recall","f1-score","support"]].round(3)
-    st.dataframe(report_df.style.background_gradient(
-        cmap="Greens", subset=["precision","recall","f1-score"]), use_container_width=True)
+    st.dataframe(report_df, use_container_width=True)
 
     st.markdown("---")
     st.subheader("📉 Class Balance")
@@ -669,8 +668,7 @@ elif page_key == "Hyperparameter Tuning":
                 "mean_test_score":"Mean CV Acc","std_test_score":"Std Dev",
                 "rank_test_score":"Rank"
             }).sort_values("Rank").head(15).round(4)
-            st.dataframe(top_results.style.background_gradient(
-                cmap="Greens", subset=["Mean CV Acc"]), use_container_width=True)
+            st.dataframe(top_results, use_container_width=True)
 
             # ── C vs Accuracy plot ─────────────────────────────────────────
             st.markdown("### 📈 C Value vs CV Accuracy (by Penalty)")
